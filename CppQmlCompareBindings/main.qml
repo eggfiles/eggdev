@@ -2,12 +2,13 @@ import QtQuick 2.13
 import QtQuick.Window 2.13
 import QtQuick.Controls 2.5
 
+
 Window {
     id: root
     visible: true
-    width: 640
-    height: 480
-    title: qsTr("Comparing bindings")
+    width: 700
+    height: 400
+    title: qsTr("Comparing cpp-qml-bindings")
 
     property int            mainDistance : _controller.m_distance
     readonly property int   safetyDistance : _controller.mSAFETYDISTANCE
@@ -19,19 +20,16 @@ Window {
     }
 
 
-
-    View_Bind{
-        y: 60
-    }
-
-
-
     Label{
         id: lblStatus
 
-        x: 300
-        y: 110
-
+        x: 255
+        y: 60
+        background:
+            Rectangle {
+                width: 100
+                border.color: "black"
+        }
         height: 40
         width: 60
         verticalAlignment: Qt.AlignVCenter
@@ -41,22 +39,25 @@ Window {
     }
 
 
-
     View_JS{
-            y: 160
-            onDistanceChangedInJs: {
-                mainDistance = distance;
+        y: 120
+        onDistanceChangedInJs: {    //JavaScript assignments rule just once and break other bindings
+            mainDistance = distance;
 
-                if(root.mainDistance >= root.safetyDistance)
-                    lblStatus.text = mainDistance;
-                else
-                    lblStatus.text = "Alert";
+            lblStatus.text = (root.mainDistance >= root.safetyDistance) ? root.mainDistance : "Alert";
 
-
-                if(root.mainDistance >= root.safetyDistance)
-                    lblStatus.color = "green";
-                else
-                    lblStatus.color = "red";
-            }
+            lblStatus.color = (root.mainDistance >= root.safetyDistance) ? "green" : "red";
         }
+    }
+
+
+    View_SignalReturn{
+        y: 180
+    }
+
+
+    View_Bind{
+        y: 240
+    }
+
 }

@@ -10,7 +10,7 @@ Item {
 
 
 
-    /////       BINDING-ELEMENT     /////
+    /////       SIGNAL-RETURN     /////
     Row{
         spacing: 5
 
@@ -21,7 +21,7 @@ Item {
             width: 250
             verticalAlignment: Qt.AlignVCenter
             font: {font.bold = true; font.pixelSize = 13}
-            text: "Binding with Binding element"
+            text: "Binding with signal/return signal"
         }
 
 
@@ -31,14 +31,8 @@ Item {
             text: "Backward"
             focus: true
             enabled: (_controller.m_distance >= _controller.mSAFETYDISTANCE) ? true : false
-            onClicked: {
-                distance = root.distance - 1;
-            }
-
-            Binding{                        // view -> controller/model
-                target: _controller
-                property: "m_distance"
-                value: root.distance
+            onClicked: {                            //triggering change signal that emits back app-wide
+                _controller.setDistance(root.distance - 1);
             }
         }
 
@@ -49,8 +43,7 @@ Item {
             width: 250
             verticalAlignment: Qt.AlignVCenter
             font: {font.bold = false; font.pixelSize = 13}
-            text: "- one binding for each property makes confusing code\n+ reliable binding\n+ logical control in cpp controller"
+            text: "+ economical short code\n+ real binding to cpp controller\n+ controller returns signal of verified value"
         }
     }
-
 }

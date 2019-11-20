@@ -15,3 +15,4 @@ void Controller::setDistance(int _distance)
     m_distance = _distance;
     emit distanceChanged(m_distance);
 }
+

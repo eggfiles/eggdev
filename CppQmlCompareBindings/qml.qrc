@@ -2,7 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>View_JS.qml</file>
-        <file>MyTwoWayBinding.qml</file>
         <file>View_Bind.qml</file>
+        <file>View_SignalReturn.qml</file>
     </qresource>
 </RCC>

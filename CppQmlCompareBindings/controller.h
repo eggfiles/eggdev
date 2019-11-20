@@ -12,6 +12,7 @@ class Controller : public QObject
     Q_PROPERTY(const int mSAFETYDISTANCE READ getSafetyDistance CONSTANT)     //CONSTANT at the end to avoid message "depends on non-notifyable properties"
     Q_PROPERTY(int m_distance MEMBER m_distance NOTIFY distanceChanged)       //use MEMBER or WRITE
 
+
 public:
     Controller();
     virtual ~Controller();
@@ -24,17 +25,14 @@ public slots:
 
 
 signals:
-    //signals to qml
     void distanceChanged(int _distance);
 
 
 //////////      Member          //////////
 
 private:
-    const int    mSAFETYDISTANCE = 5;        //in meter, as static not readable in qml
+    const int    mSAFETYDISTANCE = 5;        //in meter
     int          m_distance = 10;
-
-
 
 };
 

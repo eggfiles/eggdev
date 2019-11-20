@@ -21,7 +21,7 @@ Item {
             height: 40
             width: 250
             verticalAlignment: Qt.AlignVCenter
-            font.bold: true
+            font: {font.bold = true; font.pixelSize = 13}
             text: "Binding with JavaScript assignments"
         }
 
@@ -31,12 +31,22 @@ Item {
 
             text: "Backward"
             focus: true
-            onClicked: {
+            onClicked: {     //JavaScript assignments rule just once and break other bindings
                 root.distance = root.distance - 1;
                 if(root.distance < root.safetyDistance)
                     btnBackwardJs.enabled = false;
                 distanceChangedInJs(root.distance);
             }
+        }
+
+        Label{
+            id: lblConclusion
+
+            height: 40
+            width: 250
+            verticalAlignment: Qt.AlignVCenter
+            font: {font.bold = false; font.pixelSize = 13}
+            text: "- singular assignments break real bindings\n- expensive, bloated code\n- no logical control in cpp"
         }
     }
 }
